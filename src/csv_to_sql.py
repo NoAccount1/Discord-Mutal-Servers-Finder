@@ -17,17 +17,22 @@ cur.execute("""CREATE TABLE IF NOT EXISTS members
                 )""")
 
 ### Feed Database ###
-with open('data.csv', "r") as data_csv:
+with open("data.csv", "r") as data_csv:
     dr = csv.reader(data_csv)
     db = ((i[0], i[1], i[4], i[3], i[2]) for i in dr)
 
-    cur.executemany("INSERT INTO members (id, name, guild_id, guild_name, is_friend) VALUES (?, ?, ?, ?, ?)", db)
+    cur.executemany(
+        "INSERT INTO members (id, name, guild_id, guild_name, is_friend) VALUES (?, ?, ?, ?, ?)",
+        db,
+    )
 
     con.commit()
 
 
 ### Query Database ###
-cur.execute("SELECT name, id, COUNT(guild_id) FROM members GROUP BY id HAVING COUNT(guild_id) > 1 ORDER BY count(guild_id) DESC")
+cur.execute(
+    "SELECT name, id, COUNT(guild_id) FROM members GROUP BY id HAVING COUNT(guild_id) > 1 ORDER BY count(guild_id) DESC"
+)
 """
 SELECT name, id, COUNT(guild_id) FROM members GROUP BY id HAVING COUNT(guild_id) > 1 ORDER BY count(guild_id) DESC
 """
