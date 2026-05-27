@@ -1,6 +1,6 @@
 import pandas as pd
 import time
-from utils import DATA_CSV
+from utils import DEFAULT_CSV_PATH
 
 # with open(DATA_CSV, 'r') as csv_file:
 #     data  = csv.reader(csv_file)
@@ -10,7 +10,7 @@ from utils import DATA_CSV
 
 
 # """
-df = pd.read_csv(DATA_CSV)
+df = pd.read_csv(DEFAULT_CSV_PATH)
 
 results = {"": []}
 current_time = time.time_ns() / 10000000

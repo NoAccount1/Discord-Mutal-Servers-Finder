@@ -51,7 +51,8 @@ if TOKEN is None:  # and __name__ != "__main__":
     console.error("Token not found")
     raise Exception("Token not found")
 
-DATA_CSV = os.path.abspath("data/data.csv")
+DEFAULT_CSV_PATH = os.path.abspath("data/data.csv")
+DEFAULT_DB_PATH = os.path.abspath("data/data.db")
 
 
 if __name__ == "__main__":
@@ -62,4 +63,4 @@ if __name__ == "__main__":
     console.critical("Critical log")
 
     console.info(f"TOKEN: {TOKEN:>4}")
-    console.info(f"DATA_CSV: {DATA_CSV}")
+    console.info(f"DATA_CSV: {DEFAULT_CSV_PATH}")
