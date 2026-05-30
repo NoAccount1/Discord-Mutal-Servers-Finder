@@ -1,7 +1,7 @@
 import inquirer as inq
 import src.discord_client as discord
 from src.database_manager import DataBaseManager
-from src.utils import TOKEN, console
+from src.utils import get_token, console
 
 from os import path
 
@@ -44,7 +44,7 @@ if answer["run_scrapper"]:
     console.debug("Running Discord client")
     client = discord.MyClient(csv_path)
     try:
-        client.run(TOKEN)
+        client.run(get_token())
     except SystemExit:
         console.debug("Discord scrapper exited")
     except Exception as err:

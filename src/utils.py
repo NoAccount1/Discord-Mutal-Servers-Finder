@@ -1,10 +1,11 @@
 import os
 from dotenv import load_dotenv
 
+
+# region Logging
 import logging
 
 console = logging.getLogger(__name__)
-
 
 class CustomFormatter(logging.Formatter):
     red = "\033[31;20m"
@@ -44,12 +45,26 @@ console_handler = logging.StreamHandler()
 console_handler.setFormatter(CustomFormatter())
 console.setLevel(logging.DEBUG)
 console.addHandler(console_handler)
+# endregion
 
+# region Environment
 load_dotenv(".env")
-TOKEN = os.getenv("TOKEN")
-if TOKEN is None:  # and __name__ != "__main__":
-    console.error("Token not found")
-    raise Exception("Token not found")
+
+def get_token() -> str:
+    TOKEN = os.getenv("TOKEN")
+    if TOKEN is None:
+        console.error("Token not found")
+        raise Exception("Token not found")
+    return TOKEN
+
+
+def get_token_alt() -> str:
+    TOKEN_ALT = os.getenv("TOKEN_ALT")
+    if TOKEN_ALT is None:
+        console.error("Token not found")
+        raise Exception("Token not found")
+    return TOKEN_ALT
+# endregion
 
 DEFAULT_CSV_PATH = os.path.abspath("data/data.csv")
 DEFAULT_DB_PATH = os.path.abspath("data/data.db")
@@ -62,5 +77,5 @@ if __name__ == "__main__":
     console.error("Error log")
     console.critical("Critical log")
 
-    console.info(f"TOKEN: {TOKEN:>4}")
+    console.info(f"TOKEN: {get_token():>4}")
     console.info(f"DATA_CSV: {DEFAULT_CSV_PATH}")

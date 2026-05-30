@@ -4,9 +4,9 @@ import discord
 from discord.abc import Snowflake
 
 if __name__ == "__main__":
-    from utils import DEFAULT_CSV_PATH, TOKEN, console
+    from utils import DEFAULT_CSV_PATH, get_token, console
 else:
-    from .utils import DEFAULT_CSV_PATH, TOKEN, console # ty:ignore[unresolved-import]
+    from .utils import DEFAULT_CSV_PATH, get_token, console # ty:ignore[unresolved-import]
 
 
 class MyClient(discord.Client):
@@ -102,4 +102,4 @@ class MyClient(discord.Client):
 
 if __name__ == "__main__":
     client = MyClient()
-    client.run(TOKEN)
+    client.run(get_token())
